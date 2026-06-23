@@ -501,8 +501,6 @@ select {
   color: #31302F; /* requested color */
   width: 144.35px; /* requested width */
   height: 25.38px; /* requested height */
-}
-  color: #1a1a1a;
   letter-spacing: 0.04em;
   text-transform: uppercase;
 }
@@ -601,10 +599,6 @@ select {
 .hero-composition {
   opacity: 0;
   animation: slideInFromLeft 1.5s ease-out forwards 0.6s; /* image appears after text */
-}
-
-  color: #2d2d2d;
-  font-weight: 500;
 }
 
 .nav-actions {
@@ -1605,6 +1599,8 @@ select {
   .contact-us-inner {
     flex-direction: column;
     gap: 40px;
+    align-items: stretch;
+    width: 100%;
   }
 
   .contact-us-left {
@@ -1790,11 +1786,12 @@ select {
   align-items: flex-start;
   max-width: 1100px;
   margin: 0 auto;
+  padding: 0 24px;
+  box-sizing: border-box;
 }
 
 .team-member-detail.ranga-section {
   background-color: transparent !important;
-  padding: 0;
   border-radius: 0;
   margin-bottom: 0;
 }
@@ -1828,8 +1825,11 @@ select {
     flex: none;
     width: 80%;
   }
-}
 
+  .team-bio {
+    width: 100%;
+    align-self: stretch;
+  }
 }
 
 /* ============================================================
