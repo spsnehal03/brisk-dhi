@@ -2393,3 +2393,7 @@ p,
 .team-bio-text {
   color: #8B614F !important;
 }
+
+.team-bio-text {
+  text-align: justify !important;
+}
