@@ -2253,9 +2253,9 @@ select {
 .team p {
   font-size: 16px;
   font-family: "Helvetica Neue Light", Helvetica, Arial, sans-serif;
-  line-height: 1.37;
-  margin: 4px;
-  padding: 10px;
+  line-height: 1.6;
+  margin: 0 0 16px 0;
+  padding: 0;
   color: #31302F;
 }
 
@@ -2396,6 +2396,9 @@ p,
 
 .team-bio-text {
   text-align: left !important;
+  line-height: 1.6em !important;
+  margin: 0 0 16px 0 !important;
+  padding: 0 !important;
 }
 
 /* Align team containers exactly with About and Services sections */
