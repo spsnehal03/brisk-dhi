@@ -657,7 +657,7 @@ select {
 }
 
 .hero-title {
-  font-size: var(--text-6xl);
+  font-size: 3.8rem;
   font-weight: var(--weight-extrabold);
   letter-spacing: var(--tracking-tight);
   color: var(--color-text-inverse);
@@ -1160,17 +1160,19 @@ select {
   width: 100%;
   max-width: 1440px;
   min-height: auto;
-  margin: 110px auto 0 auto;
+  margin: 90px auto 0 auto;
   background: transparent;
   overflow: visible;
   padding: 0 clamp(20px, 3vw, 60px);
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
   box-sizing: border-box;
 }
 
 .hero-container {
   width: 100%;
   height: 100%;
-  padding: clamp(40px, 6vw, 80px) 0;
+  padding: 20px 0;
   box-sizing: border-box;
 }
 
@@ -1230,8 +1232,6 @@ select {
 ================================================== */
 .about {
   width: 100%;
-  max-width: 1440px;
-  margin: 0 auto;
   background-color: rgb(27, 27, 47);
 }
 
@@ -1240,6 +1240,8 @@ select {
   padding: clamp(40px, 6vw, 80px) clamp(20px, 5vw, 80px);
   gap: clamp(20px, 3vw, 40px);
   width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
   box-sizing: border-box;
   flex-wrap: wrap;
 }
@@ -2234,12 +2236,11 @@ select {
 /* ============================================================
    LAYOUT POLISH (Standardized Padding)
    ============================================================ */
-.about,
 .team {
   font-size: 16px;
   font-family: "Helvetica Neue Light", Helvetica, Arial, sans-serif;
   line-height: 1.37;
-  margin: 4px;
+  margin: 0;
   padding: 10px;
   color: #31302F;
 }
@@ -2414,4 +2415,107 @@ p,
 .team-member-detail {
   max-width: 100% !important;
   padding: 0 !important;
+}
+
+/* Custom styling to show a world icon by default on the flag trigger */
+.iti__selected-flag {
+  background-color: transparent !important;
+  padding: 0 !important; /* Reset padding to align globe with left edge */
+  display: flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+}
+
+/* Use high specificity selector to override individual country class backgrounds (e.g. .iti__in) on the selected flag trigger */
+.iti__selected-flag .iti__flag[class*="iti__"] {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232d2d4e' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='feather feather-globe'%3E%3Ccircle cx='12' cy='12' r='10'%3E%3C/circle%3E%3Cline x1='2' y1='12' x2='22' y2='12'%3E%3C/line%3E%3Cpath d='M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z'%3E%3C/path%3E%3C/svg%3E") !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+  background-size: contain !important;
+  width: 20px !important;
+  height: 20px !important;
+  display: inline-block !important;
+  box-shadow: none !important;
+  background-color: transparent !important;
+}
+
+.iti__selected-flag .iti__flag::before {
+  display: none !important;
+}
+
+/* Styled clean downward chevron arrow to replace the default triangle arrow */
+.iti__selected-flag .iti__arrow {
+  border: none !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232d2d4e' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E") !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+  background-size: contain !important;
+  width: 12px !important;
+  height: 12px !important;
+  margin: 0 !important;
+  transition: transform 0.15s ease !important;
+  content: "" !important;
+  display: inline-block !important;
+}
+
+/* Rotate arrow when open */
+.iti__selected-flag[aria-expanded="true"] .iti__arrow {
+  transform: rotate(180deg) !important;
+}
+
+/* Ensure the inputs are aligned and styled properly with the library */
+.iti {
+  display: block !important;
+  width: 100%;
+}
+
+.form-field input[name="phone"] {
+  padding-left: 48px !important; /* Space for globe (20px) + gap (6px) + chevron (12px) + padding (10px) */
+}
+
+/* Style the dropdown menu to match our dark/premium aesthetic */
+.iti__country-list {
+  background-color: #f3f2eb !important;
+  color: #1a1a2e !important;
+  border: 1px solid #c5a880 !important;
+  font-family: var(--font-secondary) !important;
+  z-index: 100000 !important; /* Ensure dropdown is above the site-header (z-index 9999) */
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
+  border-radius: 8px !important;
+}
+
+/* Style the search input field inside the country dropdown */
+.iti__search-input {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23666666' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='8'%3E%3C/circle%3E%3Cline x1='21' y1='21' x2='16.65' y2='16.65'%3E%3C/line%3E%3C/svg%3E") !important;
+  background-repeat: no-repeat !important;
+  background-position: 10px center !important;
+  background-size: 16px 16px !important;
+  padding: 8px 10px 8px 36px !important; /* Space for the search icon */
+  height: 40px !important;
+  border: 1px solid #c5a880 !important;
+  border-radius: 4px !important;
+  background-color: #ffffff !important;
+  color: #1a1a2e !important;
+  font-family: var(--font-secondary) !important;
+  margin: 8px !important;
+  width: calc(100% - 16px) !important;
+  box-sizing: border-box !important;
+}
+
+.iti__search-input:focus {
+  outline: none !important;
+  border-color: #2d2d4e !important;
+  box-shadow: 0 0 0 2px rgba(45, 45, 78, 0.15) !important;
+}
+
+.iti__country {
+  padding: 10px 14px !important;
+}
+
+.iti__country-name {
+  color: #1a1a2e !important;
+}
+
+.iti__dial-code {
+  color: #666 !important;
 }

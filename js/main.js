@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initSmoothScroll();
   initServicesToggle();
   initScrollAnimations();
+  initPhoneInput();
 });
 
 
@@ -226,5 +227,48 @@ function initScrollAnimations() {
     }, { threshold: 0.1 });
     const aSection = document.querySelector('#about');
     if (aSection) aObserver.observe(aSection);
+  }
+}
+
+/* ------------------------------------------------------------
+   Country Phone Codes Input initialization
+   ------------------------------------------------------------ */
+function initPhoneInput() {
+  const phoneInput = document.querySelector('input[name="phone"]');
+  if (!phoneInput) return;
+
+  window.intlTelInput(phoneInput, {
+    initialCountry: "in",
+    countrySearch: true,
+    useFullscreenPopup: false,
+    preferredCountries: ["in", "us", "gb"],
+    utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/23.0.4/js/utils.js"
+  });
+
+  // Replace the flag element with a globe SVG icon
+  const globeSVG = '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2d2d4e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>';
+
+  // Find and replace the flag element — try both old and new class names
+  const flagEl = phoneInput.closest('.iti')?.querySelector('.iti__flag') ||
+                 phoneInput.closest('.iti')?.querySelector('.iti__flag-box');
+  if (flagEl) {
+    flagEl.style.cssText = 'background:none !important; width:20px; height:20px; display:flex; align-items:center; justify-content:center;';
+    flagEl.innerHTML = globeSVG;
+  }
+
+  // Also re-apply globe on every country change
+  const itiContainer = phoneInput.closest('.iti');
+  if (itiContainer) {
+    const observer = new MutationObserver(() => {
+      const flag = itiContainer.querySelector('.iti__flag') || itiContainer.querySelector('.iti__flag-box');
+      if (flag && !flag.querySelector('svg')) {
+        flag.style.cssText = 'background:none !important; width:20px; height:20px; display:flex; align-items:center; justify-content:center;';
+        flag.innerHTML = globeSVG;
+      }
+    });
+    const selectedBtn = itiContainer.querySelector('.iti__selected-flag') || itiContainer.querySelector('.iti__selected-country');
+    if (selectedBtn) {
+      observer.observe(selectedBtn, { childList: true, subtree: true, attributes: true });
+    }
   }
 }

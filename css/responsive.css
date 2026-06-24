@@ -157,9 +157,9 @@ body {
     max-width: 100%;
   }
 
-  /* Hide the Contact Us link inside overlay — live site does not show it */
+  /* Show the Contact Us link inside overlay on mobile/tablet */
   .nav-menu .mobile-only {
-    display: none !important;
+    display: block !important;
   }
 
   /* Overlay link typography — matches live site large centered links */
@@ -271,11 +271,28 @@ html, body {
 
 /* Team Page Sections padding override */
 @media (max-width: 768px) {
-  .team-ranga-fullwidth,
+  .team-page-main {
+    padding-top: 100px !important;
+  }
+
+  .team-ranga-fullwidth {
+    padding-top: 24px !important;
+    padding-bottom: 40px !important;
+  }
+
   .team-fa-fullwidth,
   .team-advisors-fullwidth,
   .team {
     padding: 40px 0 !important;
+  }
+
+  .hero {
+    margin-top: 84px !important;
+  }
+
+  .hero-container {
+    padding-top: 10px !important;
+    padding-bottom: 20px !important;
   }
 }
 
